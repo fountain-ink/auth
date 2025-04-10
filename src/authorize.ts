@@ -5,7 +5,7 @@ const router = express.Router();
 
 // Authorize endpoint
 router.post('/', function (req, res) {
-  if (req.body.test === "true") {
+  if (req.body.test === true) {
     return res.sendStatus(200);
   }
 
