@@ -1,0 +1,22 @@
+{
+  "name": "fntn-auth",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "bun -r dotenv/config dist/index.js",
+    "dev": "bun -r dotenv/config src/index.ts"
+  },
+  "dependencies": {
+    "@lens-chain/sdk": "canary",
+    "@lens-protocol/client": "canary",
+    "dotenv": "^16.4.7",
+    "express": "^5.1.0",
+    "never": "^1.1.0",
+    "viem": "^2.26.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.17.30",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
+}
