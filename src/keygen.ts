@@ -5,12 +5,12 @@ import { keccak256 } from 'viem/utils'
 const privateKey = generatePrivateKey()
 const account = privateKeyToAccount(privateKey)
 
-console.log('Private Key: ', privateKey)
-console.log('Address: ', account.address)
+console.log('Approver Private Key: ', privateKey)
+console.log('Approver Address: ', account.address)
 
 const secret = keccak256(toBytes(privateKey))
 
-console.log('Derived secret:', secret)
+console.log('API Secret (keccak256 of private key):', secret)
 
 const shortSecret = secret.slice(2, 18)
 console.log('Short secret:', shortSecret)
