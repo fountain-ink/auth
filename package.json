@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "start": "bun -r dotenv/config dist/index.js",
-    "dev": "bun -r dotenv/config src/index.ts"
+    "dev": "bun -r dotenv/config src/index.ts",
+    "keygen": "bun src/keygen.ts"
   },
   "dependencies": {
     "@lens-chain/sdk": "canary",

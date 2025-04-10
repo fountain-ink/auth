@@ -1,10 +1,12 @@
-# Lens Authentication Workflow Example App
+# Lens Authentication And Authorization
 
-This code provides examples of how to set up your backend authorization app workflow. Note that you need to add your own logic to this repository; it is not a simple fork-and-run solution unless you intend to authorize and sponsor everyone.
+## Getting started
 
-## Setup repo
+optional: generate a private key and api secret
 
-The API requires a `.env` file that contains the private key. If you are using Vercel, you can store your private key in the Vercel environment variables. For a more secure approach, consider using key management services like AWS Secrets Manager. However, for this example, we are keeping it simple.
+```bash
+bun run keygen
+```
 
 ```bash
 cp .env.example .env
@@ -16,20 +18,20 @@ Then, fill out the details in the `.env` file:
 PRIVATE_KEY=INSERT_PRIVATE_KEY
 APP=INSERT_APP
 ENVIRONMENT=MAINNET|TESTNET
-SHARED_SECRET=INSERT_SECRET
+API_SECRET=INSERT_API_SECRET
 ```
 
-The `SHARED_SECRET` is required for the verification operation to ensure that only authorized requests can use the signed sources.
+The `API_SECRET` is shared between you and the Lens API, to make sure that only authorized requests can use the endpoints.
 
 ## Running
 
-To start the application, simply run:
+To start the server, run:
 
 ```bash
 npm start
 ```
 
-The application will start on `http://localhost:3003` unless a different port is specified via the `PORT` environment variable.
+The server will start on `http://localhost:3004` unless a different port is specified via the `PORT` environment variable.
 
 ## API Documentation
 
@@ -42,7 +44,7 @@ URL: `POST /<YOUR_SHARED_SECRET>/authorize`
 **Request:**
 
 ```bash
-curl -X POST http://localhost:3003/<YOUR_SHARED_SECRET>/authorize \
+curl -X POST http://localhost:3004/<YOUR_API_SECRET>/authorize \
      -H "Content-Type: application/json" \
      -d '{
       "account": "0x4B20993Bc481177ec7E8f571ceCaE8A9e22C02db",
@@ -56,22 +58,22 @@ curl -X POST http://localhost:3003/<YOUR_SHARED_SECRET>/authorize \
 {
   "allowed": true,
   "sponsored": false,
-  "appVerificationEndpoint": "http://localhost:3003/<YOUR_SHARED_SECRET>/verify-operation"
+  "appVerificationEndpoint": "http://localhost:3004/<YOUR_API_SECRET>/verify"
 }
 ```
 
-Note that the response is hard-coded with `"sponsored": false` to prevent any funds from being spent without you adding your own custom logic. By default, the application does not sponsor.
+Note that the response is hard-coded with `"sponsored": true` 
 
 ## Verification Endpoint
 
-URL: `POST /:YOUR_SHARED_SECRET/verify-operation`
+URL: `POST /:YOUR_API_SECRET/verify`
 
 This endpoint is used to sign operation verification requests from the Lens API.
 
 **Request:**
 
 ```bash
-curl -X POST http://localhost:3003/<YOUR_SHARED_SECRET>/verify-operation \
+curl -X POST http://localhost:3004/<YOUR_API_SECRET>/verify \
      -H "Content-Type: application/json" \
      -d '{
        "nonce": "42",

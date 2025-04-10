@@ -3,11 +3,11 @@ import { approver } from './approver';
 import { evmAddress, OperationType } from '@lens-protocol/client';
 
 interface VerificationRequestBody {
-  nonce: string; 
-  deadline: string; 
+  nonce: string;
+  deadline: string;
   operation: OperationType;
-  validator: string; 
-  account: string; 
+  validator: string;
+  account: string;
 }
 
 const router = express.Router();

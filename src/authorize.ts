@@ -13,13 +13,13 @@ router.post('/', function (req, res) {
 
   console.log(`INFO: Wallet ${signedBy} is requesting to authenticate with Account: ${account}.`);
 
-  const isAllowed = true; // Set to false if the user is not allowed to login
+  const isAllowed = true; 
 
   if (!isAllowed) {
     return res.json({ allowed: false, reason: 'User not allowed to login' });
   }
 
-  const isSponsored = true; // Set to true if the user is sponsored
+  const isSponsored = true; 
 
   // in vercel `protocol` is `http`, but `x-forwarded-proto` is `https`
   const protocol = req.headers['x-forwarded-proto'] || req.protocol;
@@ -29,7 +29,7 @@ router.post('/', function (req, res) {
   res.json({
     allowed: true,
     sponsored: isSponsored,
-    appVerificationEndpoint: `${fullDomain}/${API_SECRET}/verify-operation`,
+    appVerificationEndpoint: `${fullDomain}/${API_SECRET}/verify`,
   });
 });
 
