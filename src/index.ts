@@ -37,7 +37,9 @@ const corsOptions: cors.CorsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 
-app.get('/', function (req, res) { res.json({ online: true }); });
+app.get('/', function (req, res) { res.status(200).json({ online: true }); });
+app.post('/', function (req, res) { res.status(200).json({ online: true }); });
+
 app.use('/:secret', function (req, res, next) {
   const secret = req.params.secret;
 
