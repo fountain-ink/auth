@@ -1,8 +1,8 @@
-# Lens Authentication And Authorization
+# Lens Auth Server
 
 ## Getting started
 
-optional: generate a private key and api secret
+Optional: generate a signer private key and api secret
 
 ```bash
 bun run keygen
