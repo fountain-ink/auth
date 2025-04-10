@@ -2,8 +2,8 @@
   "name": "fntn-auth",
   "version": "1.0.0",
   "scripts": {
-    "start": "bun -r dotenv/config dist/index.js",
-    "dev": "bun -r dotenv/config src/index.ts",
+    "start": "bun -r dotenv/config src/index.ts",
+    "dev": "bun --watch -r dotenv/config src/index.ts",
     "keygen": "bun src/keygen.ts"
   },
   "dependencies": {
