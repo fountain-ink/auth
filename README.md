@@ -17,7 +17,7 @@ Then, fill out the details in the `.env` file:
 ```bash
 PRIVATE_KEY=INSERT_PRIVATE_KEY
 APP=INSERT_APP
-ENVIRONMENT=MAINNET|TESTNET
+ENVIRONMENT=development # or production
 API_SECRET=INSERT_API_SECRET
 ```
 
