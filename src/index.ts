@@ -40,20 +40,24 @@ app.use(express.json());
 app.get('/', function (req, res) { res.status(200).json({ online: true }); });
 app.post('/', function (req, res) { res.status(200).json({ online: true }); });
 
-app.use('/:secret', function (req, res, next) {
-  const secret = req.params.secret;
+app.use((req, res, next) => {
+  const authHeader = req.headers["authorization"];
+  console.log(`INFO: ${req.method} ${req.originalUrl}`);
 
-  console.log(`INFO: ${req.method} ${req.originalUrl.replace(/\/[^/]+/, '/[REDACTED]')}`);
+  if (!authHeader || !authHeader.startsWith("Bearer ")) {
+    return res.status(401).json({ error: "Missing or invalid Authorization header" });
+  }
 
-  if (secret !== API_SECRET) {
-    return res.status(401).json({ error: 'Unauthorized' });
+  const token = authHeader.split(" ")[1];
+  if (token !== API_SECRET) {
+    return res.status(401).json({ error: "Unauthorized" });
   }
 
   next();
 });
 
-app.use('/:secret/authorize', authorizationRoute);
-app.use('/:secret/verify', verificationRoute);
+app.use('/authorize', authorizationRoute);
+app.use('/verify', verificationRoute);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
