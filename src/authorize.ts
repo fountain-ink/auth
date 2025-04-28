@@ -1,5 +1,5 @@
 import express from 'express';
-import { API_SECRET } from './config';
+import { API_SECRET, PRIVATE_KEY } from './config';
 
 const router = express.Router();
 
@@ -33,7 +33,7 @@ router.post('/', function (req, res) {
   res.json({
     allowed: true,
     sponsored: isSponsored,
-    appVerificationEndpoint: `${fullDomain}/${API_SECRET}/verify`,
+    signingKey: PRIVATE_KEY,
   });
 });
 

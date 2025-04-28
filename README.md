@@ -58,7 +58,7 @@ curl -X POST http://localhost:3004/<YOUR_API_SECRET>/authorize \
 {
   "allowed": true,
   "sponsored": false,
-  "appVerificationEndpoint": "http://localhost:3004/<YOUR_API_SECRET>/verify"
+  "signingKey": "0x1234"
 }
 ```
 
